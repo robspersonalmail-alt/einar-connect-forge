@@ -6,7 +6,7 @@ export function SiteLayout({ site, children }: { site: string, children: React.R
     <div className="min-h-screen flex flex-col bg-gradient-subtle">
       <Header site={site} />
       <main className="flex-1">
-        <div className="max-w-6xl mx-auto p-6">{children}</div>
+        <div className="max-w-7xl mx-auto px-8 py-8">{children}</div>
       </main>
       <Footer site={site} />
     </div>
