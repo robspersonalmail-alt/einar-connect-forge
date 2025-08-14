@@ -1,73 +1,112 @@
-# Welcome to your Lovable project
+# White‑Label Author Template
 
-## Project info
+A minimal, production‑ready starter for white‑label author sites (React + Vite + Tailwind).
 
-**URL**: https://lovable.dev/projects/453a1c4e-a9f9-42a4-ab47-a30c8986a656
+This template is recreated from the original EinarCore project and now integrated with Lovable for enhanced development and deployment.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **🎨 Dynamic Branding System** - Per‑tenant JSON configuration with runtime CSS tokens
+- **🔄 Multi-Tenant Routing** - Home / Books / About pages with tenant-specific content
+- **🌍 i18n Support** - English/Swedish internationalization helper
+- **📱 SEO Optimized** - Meta helper for SEO and Open Graph tags
+- **🎯 Per‑Tenant Assets** - Brand assets under `public/brands/<tenant>/`
+- **⚡ Modern Stack** - React 18, Vite, TypeScript, Tailwind CSS, shadcn/ui
 
-**Use Lovable**
+## Quick Start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/453a1c4e-a9f9-42a4-ab47-a30c8986a656) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+```bash
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+cp .env.example .env
+# Optionally set VITE_DEFAULT_TENANT in .env
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Tenants & Branding
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Default brand config**: `src/brands/default.json`
+- **Example brand**: `src/brands/acme.json`
+- **Domain mapping**: Configure in `src/lib/tenant.ts` (`hostToTenant`)
+- **Brand assets**: Store per tenant under `public/brands/<tenant>/`
 
-**Use GitHub Codespaces**
+### Creating a New Brand
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Create a new JSON file in `src/brands/` (e.g., `myauthor.json`)
+2. Add brand configuration:
+```json
+{
+  "id": "myauthor",
+  "siteName": "My Author Site",
+  "primaryColor": "#0ea5e9",
+  "foreground": "#ffffff",
+  "fontSans": "Inter, ui-sans-serif, system-ui",
+  "logo": "/brands/myauthor/logo.svg",
+  "ogImage": "/brands/myauthor/og.svg",
+  "links": {
+    "store": "https://store.example.com",
+    "newsletter": "https://newsletter.example.com",
+    "instagram": "https://instagram.com/myauthor",
+    "x": "https://x.com/myauthor"
+  }
+}
+```
+3. Create brand assets in `public/brands/myauthor/`
+4. Set `VITE_DEFAULT_TENANT=myauthor` in `.env` or map domain in `tenant.ts`
 
-## What technologies are used for this project?
+## Technologies Used
 
-This project is built with:
+- **Frontend**: React 18, TypeScript, Vite
+- **UI**: Tailwind CSS, shadcn/ui components
+- **Routing**: React Router DOM
+- **State Management**: React Query
+- **Build Tool**: Vite with SWC
+- **Development**: Lovable integration for rapid iteration
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment & White‑Label
 
-## How can I deploy this project?
+- **Lovable**: Click Share → Publish for instant deployment
+- **Custom Domain**: Connect via Project > Settings > Domains
+- **GitHub Integration**: Auto-sync with your repository
+- **Self-Hosting**: Standard React build - deploy anywhere
 
-Simply open [Lovable](https://lovable.dev/projects/453a1c4e-a9f9-42a4-ab47-a30c8986a656) and click on Share -> Publish.
+## Development with Lovable
 
-## Can I connect a custom domain to my Lovable project?
+This project is optimized for Lovable's AI-powered development environment:
 
-Yes, you can!
+1. **Real-time Updates**: Changes appear instantly in preview
+2. **AI Assistance**: Prompt for features, bug fixes, and improvements  
+3. **Component Library**: Leverage shadcn/ui components
+4. **Design System**: Consistent theming with CSS variables
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Project Structure
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```
+src/
+├── brands/           # Tenant brand configurations
+├── components/       # Reusable UI components
+├── layouts/          # Page layouts
+├── lib/              # Utilities (tenant, i18n, meta)
+├── routes/           # Page components
+├── types/            # TypeScript definitions
+└── App.tsx          # Main application with tenant resolution
+
+public/
+└── brands/           # Per-tenant static assets
+    ├── default/
+    └── acme/
+```
+
+## Notes
+
+- Replace placeholder assets in `/public/brands/*` with real logos and images
+- Add analytics (GA4/Plausible) via environment variables
+- Expand data models (books, series, events, posts) as needed
+- Consider adding a CMS integration for dynamic content management
+
+## Contributing
+
+This template is designed to be easily customizable. Feel free to:
+- Add new page routes and components
+- Extend the branding system with additional properties
+- Integrate with headless CMS or external APIs
+- Add authentication and user management features
